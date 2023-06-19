@@ -2,7 +2,6 @@
 import 'package:acbs_sample/Pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../Provider/login_provider.dart';
 import 'home_product.dart';
 
@@ -57,13 +56,13 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
                 textInputAction: TextInputAction.next,
-                // validator: (uname) {
-                //   if (uname!.isEmpty || !uname.contains('')) {
-                //     return 'Enter a valid Phone Number';
-                //   } else {
-                //     return null;
-                //   }
-                // },
+                validator: (uname) {
+                  if (uname!.isEmpty || !uname.contains('')) {
+                    return 'Enter a valid Phone Number';
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ),
             Padding(
@@ -95,13 +94,13 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
                 textInputAction: TextInputAction.done,
-                // validator: (Password) {
-                //   if (Password!.isEmpty || Password.length < 6) {
-                //     return "Enter a valid Password, length should be greater than 6";
-                //   } else {
-                //     return null;
-                //   }
-                // },
+                validator: (Password) {
+                  if (Password!.isEmpty || Password.length < 6) {
+                    return "Enter a valid Password, length should be greater than 6";
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ),
             SizedBox(

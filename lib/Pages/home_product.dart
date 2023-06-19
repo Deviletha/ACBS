@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../Config/base_client.dart';
 import '../Model/Product.dart';
+import 'addproducts.dart';
 
 class HomeProduct extends StatefulWidget {
   const HomeProduct({Key? key}) : super(key: key);
@@ -114,6 +115,7 @@ class _HomeProductState extends State<HomeProduct> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
@@ -195,10 +197,22 @@ class _HomeProductState extends State<HomeProduct> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        onPressed: () => Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return AddNewProducts();
+          },
+        )),
+        child: Icon(
+          Icons.add_circle_rounded,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 
-  Widget getRow(int index) {
+  Widget getRow(int index)  {
     var image = base! + listP![index]["image"];
     var price = "₹ " + listP![index]["amount"].toString();
     return Card(
@@ -214,7 +228,7 @@ class _HomeProductState extends State<HomeProduct> {
                     description : listP![index]["description"].toString(),
                     price : listP![index]["amount"].toString(),
                     location : listP![index]["city"].toString(),
-
+                    id : listP![index]["id"].toString(),
                   ),
             ),
           );
@@ -285,9 +299,8 @@ class _HomeProductState extends State<HomeProduct> {
           ],
         ),
         trailing: Icon(
-          Icons.star_border,
-          color: Colors.green,
-        ),
+          Icons.favorite_sharp
+        )
       ),
     );
   }

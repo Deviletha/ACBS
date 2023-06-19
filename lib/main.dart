@@ -1,5 +1,6 @@
+import 'package:acbs_sample/Pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'Pages/home_product.dart';
+import 'Pages/login.dart';
 import 'Provider/login_provider.dart';
 import 'Provider/signup_provider.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomeProduct(),
+        home: Login(),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(primary: Colors.indigoAccent
           ),
