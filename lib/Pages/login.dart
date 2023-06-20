@@ -1,6 +1,8 @@
 import 'dart:convert';
-import 'package:acbs_sample/Pages/signup_page.dart';
+import 'package:acbs_sample/Pages/home_product.dart';
+import 'package:acbs_sample/Pages/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../Config/base_client.dart';
@@ -17,11 +19,14 @@ class _LoginState extends State<Login> {
   List? loginlist;
 
   bool showpass = true;
-
+  late SharedPreferences prefs;
   final userIdController = TextEditingController();
   final passController = TextEditingController();
 
-
+  Future<void> saveLoginStatus() async {
+  prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
+  }
 
   callAPIandAssignData() async {
     var response =
@@ -34,6 +39,7 @@ class _LoginState extends State<Login> {
       setState(() {
         debugPrint('api successful:');
         loginlist = jsonDecode(response);
+
 
         Fluttertoast.showToast(
           msg: "Success ",
@@ -60,6 +66,8 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     callAPIandAssignData();
+    // Save the login status
+    saveLoginStatus();
     super.initState();
   }
 
@@ -72,7 +80,7 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
+              const Center(
                 heightFactor: 2,
                 child: Text(
                   "Login",
@@ -82,7 +90,7 @@ class _LoginState extends State<Login> {
                       color: Colors.black),
                 ),
               ),
-              Text(
+              const Text(
                 "Welcome back! Login with your credentials",
                 style: TextStyle(fontSize: 15, color: Colors.black45),
               ),
@@ -149,7 +157,65 @@ class _LoginState extends State<Login> {
                 width: 350,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: ()  {
+                  onPressed: () async {
+                      // Get the entered username and password
+                      String username = userIdController.text.toString();
+                      String password = passController.text.toString();
+
+                      // Check if the username and password are not empty
+                      if (username.isNotEmpty && password.isNotEmpty) {
+                        // Make the API call with the entered credentials
+                        var response = await BaseClient().post(api: "common/authenticate", body: {
+                          'username': username,
+                          'password': password,
+                        }).catchError((err) {});
+
+                        if (response != null) {
+                          // API call succeeded
+                          setState(() {
+                            // Save the login status
+                            saveLoginStatus();
+                            debugPrint('API successful:');
+                            loginlist = jsonDecode(response);
+                            prefs.setString("isLoggedIn", "id");
+                          });
+
+                          Fluttertoast.showToast(
+                            msg: "Login success",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                          // Navigate to the home screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeProduct()),
+                          );
+                        } else {
+                          // API call failed
+                          debugPrint('API failed:');
+                          Fluttertoast.showToast(
+                            msg: "Login failed",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                        }
+                      } else {
+                        // Username or password is empty
+                        Fluttertoast.showToast(
+                          msg: "Please enter username and password",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      }
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.indigo,
@@ -165,7 +231,7 @@ class _LoginState extends State<Login> {
                     style: TextStyle(fontSize: 15, color: Colors.black45)),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()));
+                      MaterialPageRoute(builder: (context) => Signup()));
                 },
               ),
             ],
