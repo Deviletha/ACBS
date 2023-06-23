@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Login(),
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch().copyWith(primary: Colors.indigoAccent
+          colorScheme: ColorScheme.fromSwatch().copyWith(primary: Colors.indigo
           ),
         ),
       ),

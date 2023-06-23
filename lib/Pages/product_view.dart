@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import '../Config/base_client.dart';
-import 'addproducts.dart';
 
 class ProductView extends StatefulWidget {
   final String text;
@@ -35,7 +33,6 @@ class _ProductViewState extends State<ProductView> {
   List? productList;
   Map? prlist;
   Map? prlist1;
-
   List? Prlist;
   List? Imagelist;
   int index = 0; // Add this line to initialize the index

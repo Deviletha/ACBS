@@ -100,11 +100,13 @@ class _LoginState extends State<Login> {
                 child: TextFormField(
                   controller: userIdController,
                   decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.account_box_sharp),
+                      suffixIcon: const Icon(Icons.account_box_sharp),
                       hintText: "Phone Number",
                       labelText: 'Phone Number',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (uname) {
                     if (uname!.isEmpty || !uname.contains('')) {
@@ -123,7 +125,6 @@ class _LoginState extends State<Login> {
                   obscureText: showpass,
                   obscuringCharacter: "*",
                   decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.visibility_off),
                       suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -141,8 +142,10 @@ class _LoginState extends State<Login> {
                           )),
                       hintText: "Password",
                       labelText: "Password",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.done,
                   validator: (Password) {
                     if (Password!.isEmpty || Password.length < 6) {
@@ -221,7 +224,7 @@ class _LoginState extends State<Login> {
                       backgroundColor: Colors.indigo,
                       shadowColor: Colors.indigo[300],
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topRight: Radius.circular(10)),
                       )),
                   child: Text("Login"),
                 ),

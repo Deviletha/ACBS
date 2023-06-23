@@ -17,9 +17,7 @@ class _AddNewProductsState extends State<AddNewProducts> {
   String? fileName;
   PlatformFile? pickedFile;
   bool isLoading = false;
-  List<String>
-
-  base64Images = []; // Store the base64 images as a list
+  List<String> base64Images = []; // Store the base64 images as a list
   TextEditingController productNameController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController locationController = TextEditingController();
@@ -58,24 +56,23 @@ class _AddNewProductsState extends State<AddNewProducts> {
   }
 
   callAPIandAssignData() async {
-    var response =
-    await BaseClient().post(api: "user/addNewProduct", body: {
+    var response = await BaseClient().post(api: "user/addNewProduct", body: {
       "name": productNameController.text,
       "imageUrl": base64Images[0],
-      "code" : "code",
-      "customer" : "38",
-      "category" : "1",
-      "brand" : "1",
-      "amount" : amountController.text,
-      "discount" : "discount",
-      "hsn" : "hsn",
-      "latitude" : "latitude",
-      "longitude" : "longitude",
-      "location" : locationController.text,
-      "tax" : "tax",
+      "code": "code",
+      "customer": "38",
+      "category": "1",
+      "brand": "1",
+      "amount": amountController.text,
+      "discount": "discount",
+      "hsn": "hsn",
+      "latitude": "latitude",
+      "longitude": "longitude",
+      "location": locationController.text,
+      "tax": "tax",
       "description": descriptionController.text,
       "detail_images": "base64Images"
-       // Join multiple images with a separator
+      // Join multiple images with a separator
     }).catchError((err) {});
     if (response != null) {
       setState(() {
@@ -121,9 +118,14 @@ class _AddNewProductsState extends State<AddNewProducts> {
                   onPressed: () {
                     pickFile();
                   },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigo,
+                      shadowColor: Colors.indigo[300],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topRight: Radius.circular(10)),
+                      )),
                   child: Text(
                     "Pick File",
-                    style: TextStyle(color: Colors.red),
                     selectionColor: Colors.blue,
                   ),
                 ),
@@ -144,34 +146,68 @@ class _AddNewProductsState extends State<AddNewProducts> {
                     ),
                   ),
                 SizedBox(height: 16),
-                TextField(
-                  controller: productNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Product Name',
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                  child: TextField(
+                    controller: productNameController,
+                    decoration: InputDecoration(
+                      labelText: 'Product Name',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10))),
+                    ),
                   ),
                 ),
-                TextField(
-                  controller: amountController,
-                  decoration: InputDecoration(
-                    labelText: 'Amount',
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                  child: TextField(
+                    controller: amountController,
+                    decoration: InputDecoration(
+                      labelText: 'Amount',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10))),
+                    ),
                   ),
                 ),
-                TextField(
-                  controller: locationController,
-                  decoration: InputDecoration(
-                    labelText: 'Location',
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                  child: TextField(
+                    controller: locationController,
+                    decoration: InputDecoration(
+                      labelText: 'Location',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10))),
+                    ),
                   ),
                 ),
-                TextField(
-                  controller: descriptionController,
-                  decoration: InputDecoration(
-                    labelText: 'Description',
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                  child: TextField(
+                    controller: descriptionController,
+                    decoration: InputDecoration(
+                      labelText: 'Description',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10))),
+                    ),
                   ),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     callAPIandAssignData();
                   },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        shadowColor: Colors.indigo[300],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topRight: Radius.circular(10)),
+                        )),
                   child: Text('Submit'),
                 ),
               ],
@@ -182,4 +218,3 @@ class _AddNewProductsState extends State<AddNewProducts> {
     );
   }
 }
-

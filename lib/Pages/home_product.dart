@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:acbs_sample/Pages/product_view.dart';
+import 'package:acbs_sample/Pages/wishlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -33,6 +34,10 @@ class _HomeProductState extends State<HomeProduct> {
   Map? blist;
   List? ListB;
 
+  List? wishList;
+  Map? adlist;
+  List? ListAd;
+
   callAPIandAssignData() async {
     var response = await BaseClient().post(api: "user/getProducts", body: {
       "offset": "0",
@@ -41,7 +46,7 @@ class _HomeProductState extends State<HomeProduct> {
     }).catchError((err) {});
     if (response != null) {
       setState(() {
-        debugPrint('api successful:');
+        debugPrint('get products api successful:');
         data = response.toString();
         list = jsonDecode(response);
         list1 = list!["data"];
@@ -77,7 +82,7 @@ class _HomeProductState extends State<HomeProduct> {
     }).catchError((err) {});
     if (response != null) {
       setState(() {
-        debugPrint('api successful:');
+        debugPrint('get category api successful:');
         clist = jsonDecode(response);
         ListP1 = clist!["pageData"];
 
@@ -111,7 +116,7 @@ class _HomeProductState extends State<HomeProduct> {
     }).catchError((err) {});
     if (response != null) {
       setState(() {
-        debugPrint('api successful:');
+        debugPrint('get brand api successful:');
         data = response.toString();
         list = jsonDecode(response);
         blist = list!["data"];
@@ -119,6 +124,42 @@ class _HomeProductState extends State<HomeProduct> {
 
         Fluttertoast.showToast(
           msg: "Success ",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      });
+    } else {
+      debugPrint('api failed:');
+      Fluttertoast.showToast(
+        msg: "failed",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
+  }
+
+  addTowishtist(String id) async {
+    var response = await BaseClient().post(
+        api: "addwishList",
+        body: {"userid": "38",
+          "productid": id,
+        }).catchError((err) {});
+    if (response != null) {
+      setState(() {
+        debugPrint('addwishlist api successful:');
+        data = response.toString();
+        list = jsonDecode(response);
+        adlist = list!["pagination"];
+        ListAd = adlist!["pageData"];
+
+        Fluttertoast.showToast(
+          msg: "Added to Wishlist",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -181,7 +222,12 @@ class _HomeProductState extends State<HomeProduct> {
             color: Colors.black,
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return WishlistPage();
+                    },
+                  )),
+
               icon: Icon(
                 Icons.favorite,
                 color: Colors.red,
@@ -283,6 +329,7 @@ class _HomeProductState extends State<HomeProduct> {
   Widget getRow(int index) {
     var image = base! + listP![index]["image"];
     var price = "₹ " + listP![index]["amount"].toString();
+    var  PID =  listP![index]["id"].toString();
     return Card(
       child: ListTile(
           onTap: () {
@@ -329,6 +376,7 @@ class _HomeProductState extends State<HomeProduct> {
                     flex: 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         listP == null
                             ? Text("null data")
@@ -366,7 +414,12 @@ class _HomeProductState extends State<HomeProduct> {
               ),
             ],
           ),
-          trailing: Icon(Icons.favorite_sharp)),
+          trailing: IconButton(
+            onPressed: () {
+            addTowishtist(PID);
+            },
+            icon: Icon(Icons.favorite_sharp),
+          )),
     );
   }
 

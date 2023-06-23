@@ -105,8 +105,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "Name",
                       labelText: 'Name',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -127,8 +129,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "Email ID",
                       labelText: 'Email ID',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty || !value.contains('@')) {
@@ -148,8 +152,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "Phone Number",
                       labelText: 'Phone Number',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -169,8 +175,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "Address",
                       labelText: 'Address',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -190,8 +198,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "location",
                       labelText: 'location',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -211,8 +221,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "latitude",
                       labelText: 'latitude',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -232,8 +244,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "longitude",
                       labelText: 'longitude',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -253,8 +267,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "city",
                       labelText: 'city',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -274,8 +290,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "State",
                       labelText: 'State',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -295,8 +313,10 @@ class _SignupState extends State<Signup> {
                       contentPadding: EdgeInsets.all(10),
                       hintText: "Pin code",
                       labelText: 'Pin code',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.next,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -334,8 +354,10 @@ class _SignupState extends State<Signup> {
                           )),
                       hintText: "Password",
                       labelText: "Password",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10))),),
                   textInputAction: TextInputAction.done,
                   validator: (Password) {
                     if (Password!.isEmpty || Password.length < 6) {
@@ -359,7 +381,7 @@ class _SignupState extends State<Signup> {
                       backgroundColor: Colors.indigo,
                       shadowColor: Colors.indigo[300],
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topRight: Radius.circular(10)),
                       )),
                   child: Text("Sign Up"),
                 ),
