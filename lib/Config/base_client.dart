@@ -43,12 +43,7 @@ class BaseClient {
 
   Future<dynamic> post({required String api, required Map body}) async {
     var url = Uri.parse(baseUrl + api);
-    //var _payload = json.encode(object);
-    var _payload={
-      "offset": offset,
-      "pageLimit": "100",
-      "table": "products"
-    };
+
     var _headers = {
       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcnlhYXMiLCJuYW1lIjoiSGF3a3MgU29sdXRpb25zIiwiYWRtaW4iOnRydWV9.BoaclKRc8ZpUbWFoQ0tv80RRncyXtRypI6jDVIJQOas',
       'Content-Type': 'application/x-www-form-urlencoded',
