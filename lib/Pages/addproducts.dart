@@ -13,10 +13,10 @@ class AddNewProducts extends StatefulWidget {
 }
 
 class _AddNewProductsState extends State<AddNewProducts> {
+  bool isLoading = false;
   FilePickerResult? result;
   String? fileName;
   PlatformFile? pickedFile;
-  bool isLoading = false;
   List<String> base64Images = []; // Store the base64 images as a list
   TextEditingController productNameController = TextEditingController();
   TextEditingController amountController = TextEditingController();

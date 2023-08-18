@@ -66,7 +66,6 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     callAPIandAssignData();
-    // Save the login status
     saveLoginStatus();
     super.initState();
   }
@@ -172,7 +171,6 @@ class _LoginState extends State<Login> {
                           'username': username,
                           'password': password,
                         }).catchError((err) {});
-
                         if (response != null) {
                           // API call succeeded
                           setState(() {

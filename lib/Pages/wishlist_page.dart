@@ -15,7 +15,7 @@ class _WishlistPageState extends State<WishlistPage> {
   String? base =
       "https://acbsdemo.hawkssolutions.com/public/uploads/Products/cover/";
   String? images;
-  var PID;
+    var PID;
   List? productList;
   Map? prlist;
   Map? prlist1;
